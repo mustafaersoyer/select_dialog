@@ -1,6 +1,7 @@
 library select_dialog;
 
 import 'package:flutter/material.dart';
+
 import 'select_bloc.dart';
 
 typedef Widget SelectOneItemBuilderType<T>(
@@ -11,6 +12,7 @@ typedef Widget ErrorBuilderType<T>(BuildContext context, dynamic exception);
 class SelectDialog<T> extends StatefulWidget {
   final T selectedValue;
   final List<T> itemsList;
+  final width;
 
   ///![image](https://user-images.githubusercontent.com/16373553/80187339-db365f00-85e5-11ea-81ad-df17d7e7034e.png)
   final bool showSearchBox;
@@ -48,6 +50,7 @@ class SelectDialog<T> extends StatefulWidget {
     this.loadingBuilder,
     this.constraints,
     this.autofocus = false,
+    this.width,
   }) : super(key: key);
 
   static Future<T> showModal<T>(
@@ -67,6 +70,7 @@ class SelectDialog<T> extends StatefulWidget {
     ErrorBuilderType errorBuilder,
     BoxConstraints constraints,
     bool autofocus = false,
+    double width,
   }) {
     return showDialog(
       context: context,
@@ -91,6 +95,7 @@ class SelectDialog<T> extends StatefulWidget {
             errorBuilder: errorBuilder,
             constraints: constraints,
             autofocus: autofocus,
+            width: width,
           ),
         );
       },
@@ -128,24 +133,24 @@ class _SelectDialogState<T> extends State<SelectDialog<T>> {
     bloc.dispose();
   }
 
-  bool get isMobile =>
+  /* bool get isMobile =>
       MediaQuery.of(context).size.width > MediaQuery.of(context).size.height;
 
   BoxConstraints get webDefaultConstraints =>
-      BoxConstraints(maxWidth: 250, maxHeight: 500);
+      BoxConstraints(maxWidth: 250, maxHeight: 500);*/
 
   BoxConstraints get mobileDefaultConstraints => BoxConstraints(
-        maxWidth: MediaQuery.of(context).size.width * 0.9,
+        maxWidth: widget.width, //MediaQuery.of(context).size.width * 0.9,
         maxHeight: MediaQuery.of(context).size.height * 0.7,
       );
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width * 0.9,
+      width: widget.width, //MediaQuery.of(context).size.width * 0.9,
       height: MediaQuery.of(context).size.height * 0.7,
-      constraints: widget.constraints ??
-          (isMobile ? webDefaultConstraints : mobileDefaultConstraints),
+      /*  constraints: widget.constraints ??
+          (isMobile ? webDefaultConstraints : mobileDefaultConstraints),*/
       child: Column(
         children: <Widget>[
           if (widget.showSearchBox ?? true)
