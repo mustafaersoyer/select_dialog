@@ -73,7 +73,6 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () {
                 SelectDialog.showModal<UserModel>(
                   context,
-                  width: 20.0,
                   label: "Model Example",
                   items: modelItems,
                   onChange: (UserModel selected) {

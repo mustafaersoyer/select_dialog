@@ -139,15 +139,15 @@ class _SelectDialogState<T> extends State<SelectDialog<T>> {
   BoxConstraints get webDefaultConstraints =>
       BoxConstraints(maxWidth: 250, maxHeight: 500);*/
 
-  BoxConstraints get mobileDefaultConstraints => BoxConstraints(
+  /* BoxConstraints get mobileDefaultConstraints => BoxConstraints(
         maxWidth: widget.width, //MediaQuery.of(context).size.width * 0.9,
         maxHeight: MediaQuery.of(context).size.height * 0.7,
-      );
+      );*/
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: widget.width, //MediaQuery.of(context).size.width * 0.9,
+       width:1,// widget.width, //MediaQuery.of(context).size.width * 0.9,
       height: MediaQuery.of(context).size.height * 0.7,
       /*  constraints: widget.constraints ??
           (isMobile ? webDefaultConstraints : mobileDefaultConstraints),*/
